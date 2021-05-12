@@ -1,165 +1,163 @@
-#########################################################
-######################## Setup ##########################
-#########################################################
-library(dplyr)
-library(ggplot2)
-library(forcats)
-library(vroom)
+########################################################
+#################### Libraries #########################
+########################################################
 library(shiny)
-library(bslib)
-#theme
-thematic::thematic_shiny(font='auto')
-#create folder for data storage
-dir.create("neiss")
-#> Warning in dir.create("neiss"): 'neiss' already exists
-download <- function(name) {
-    url <- "https://github.com/hadley/mastering-shiny/raw/master/neiss/"
-    download.file(paste0(url, name), paste0("neiss/", name), quiet = TRUE)
-}
-#download data
-download("injuries.tsv.gz")
-download("population.tsv")
-download("products.tsv")
-#import datas
-injuries <- vroom::vroom("neiss/injuries.tsv.gz")
-products <- vroom::vroom("neiss/products.tsv")
-population <- vroom::vroom("neiss/population.tsv")
-#not needed, but imports datas as well
-if (!exists("injuries")) {
-    injuries <- vroom::vroom("injuries.tsv.gz")
-    products <- vroom::vroom("products.tsv")
-    population <- vroom::vroom("population.tsv")
-}
-#########################################################
-################### User Interface ######################
-#########################################################
-ui <- fluidPage(
-    # theme
-    theme=bs_theme(),
-    # selection variables
+library(tidyverse)
+########################################################
+################# Data Wrangling #######################
+########################################################
+#Data Used
+BP<-read.csv('BainbridgeIslandShorelineData2019.csv')
+#fill with NAs
+BP$tidalInfl<-NA
+#input values by site
+BP[BP$site=='A',]$tidalInfl<-2.886
+BP[BP$site=='B',]$tidalInfl<-5.433
+BP[BP$site=='C',]$tidalInfl<-5.010
+BP[BP$site=='D',]$tidalInfl<-4.440
+BP[BP$site=='E',]$tidalInfl<-4.053
+BP[BP$site=='F',]$tidalInfl<-4.566
+BP[BP$site=='G',]$tidalInfl<-3.888
+BP[BP$site=='H',]$tidalInfl<-5.224
+BP[BP$site=='K',]$tidalInfl<-6.835
+BP[BP$site=='L',]$tidalInfl<-7.950
+BP[BP$site=='M',]$tidalInfl<-0.890
+BP[BP$site=='N',]$tidalInfl<-4.493
+BP[BP$site=='P',]$tidalInfl<-8.403
+BP[BP$site=='S',]$tidalInfl<-4.866
+BP[BP$site=='U',]$tidalInfl<-5.363
+BP[BP$site=='Z',]$tidalInfl<-5.895
+#create columns for elevations and distances
+bp.df<-BP%>%
+    group_by(site)%>%
+    mutate(elevation_cm=cumsum(slope_cm),
+           width_cm=cumsum(string_cm),
+           elevation_m=elevation_cm*0.01,
+           width_m=width_cm*0.01,
+           tidalElevation_m=elevation_m+tidalInfl,
+           elevation_ft=tidalElevation_m*3.281,
+           width_ft=width_m*3.281)
+#pivot biology longer
+BioDF.line<-bp.df[,c(2,9:18,85,86)]%>%
+    pivot_longer(!c(site,width_ft,elevation_ft),
+                 names_to='Biology',
+                 values_to='Presence')
+########################################################
+####################### UI #############################
+########################################################
+ui<-fluidPage(
+    # Application title
+    titlePanel('Bainbridge Island Shoreline Analysis'),
     fluidRow(
-        column(8,selectInput("code","Product",
-                             choices=setNames(products$prod_code,
-                                              products$title),
-                             width="100%")),
-        column(2,selectInput("y","Y axis",
-                             c("rate", "count"))),
-        column(2,numericInput('N',"Select Number of Table Rows",
-                              value=5,min=1,max=10))),
-    # table variables
-    fluidRow(
-        column(4,tableOutput("diag")),
-        column(4,tableOutput("body_part")),
-        column(4,tableOutput("location"))),
-    # plot variable
-    fluidRow(
-        column(12, plotOutput("age_sex"))),
-    # narrative variables
-    fluidRow(
-        column(3,actionButton('AfterStory',"Tell me a new story")),
-        column(3,actionButton("BeforeStory","Tell me the previous story")),
-        column(10,textOutput("narrative")))
-)
-#########################################################
-################# Function Junction #####################
-#########################################################
-count_top<-function(df,var,n=5){
-    df%>%
-        mutate({{var}}:=fct_lump(fct_infreq({{var}}),n=n))%>%
-        group_by({{var}})%>%
-        summarise(n=as.integer(sum(weight)))
-}
-#########################################################
-###################### Server ###########################
-#########################################################
-server<-function(input,output,session){
-    # theme
-    bs_themer()
-    # objects for outputs
-    selected<-reactive(injuries%>%
-                           filter(prod_code==input$code))
-    userN<-reactive(input$N)
-    # table output
-    output$diag<-renderTable(count_top(selected(),
-                                       diag,
-                                       userN()),
-                             width="100%")
-    output$body_part<-renderTable(count_top(selected(),
-                                            body_part,
-                                            userN()),
-                                  width="100%")
-    output$location<-renderTable(count_top(selected(),
-                                           location,
-                                           userN()),
-                                 width="100%")
-    # plot output
-    summary<-reactive({
-        selected()%>%
-            count(age,sex,wt=weight)%>%
-            left_join(population,by=c("age","sex"))%>%
-            mutate(rate=n/population*1e4)
-    })
-    # plot binary selection
-    output$age_sex<-renderPlot({
-        if(input$y=="count")
-            {summary()%>%
-                ggplot(aes(age,n,colour=sex))+
-                geom_line(size=1)+
-                theme_bw()+
-                labs(y="Estimated number of injuries")+
-                scale_color_manual(values=PNWColors::pnw_palette('Bay',2))
-        }
-        else
-            {summary()%>%
-                ggplot(aes(age,rate,colour=sex))+
-                geom_line(na.rm=T,size=1)+
-                theme_bw()+
-                labs(y="Injuries per 10,000 people")+
-                scale_color_manual(values=PNWColors::pnw_palette('Bay',2))
-        }
-    },res=96)
-    
-    # circular narrative section edited using code from: 
-    # https://mastering-shiny-solutions.org/case-study-er-injuries.html
-    
-    # narrative section
-    # Find the maximum possible number of rows.
-    max_no_rows<-reactive(
-        max(length(unique(selected()$diag)),
-            length(unique(selected()$body_part)),
-            length(unique(selected()$location)))
+        column(3,
+            # Select Box for site choices (plot 1)
+            selectInput('select','Site for Plot 1',
+                        choices=list('Site A','Site B',
+                                     'Site C','Site D',
+                                     'Site E','Site F',
+                                     'Site G','Site H',
+                                     'Site K','Site L',
+                                     'Site M','Site N',
+                                     'Site P','Site S',
+                                     'Site U','Site Z'),
+                        selected='Site A')),
+        column(3,
+            # Select Box for Biology Choices (plot 1)
+            checkboxGroupInput('select2','Biology for Plot 1',
+                               choices=list('Bare Beach','Green Algae',
+                                            'Brown Algae','Red Algae',
+                                            'Barnacles','Tube Worms',
+                                            'Z.japonica','Z.marina',
+                                            'Anemones','Mussels'))),
+        column(3,
+            # Select Box for site choices (plot 2)
+            selectInput('select3','Site for Plot 2',
+                        choices=list('Site A','Site B',
+                                     'Site C','Site D',
+                                     'Site E','Site F',
+                                     'Site G','Site H',
+                                     'Site K','Site L',
+                                     'Site M','Site N',
+                                     'Site P','Site S',
+                                     'Site U','Site Z'),
+                        selected='Site A')),
+        column(3,
+            # Select Box for Biology Choices (plot 2)
+            checkboxGroupInput('select4','Biology for Plot 2',
+                               choices=list('Bare Beach','Green Algae',
+                                            'Brown Algae','Red Algae',
+                                            'Barnacles','Tube Worms',
+                                            'Z.japonica','Z.marina',
+                                            'Anemones','Mussels')))),
+    # Plot 1
+    fluidPage(
+        verticalLayout(
+            titlePanel('Plot 1'),
+            plotOutput('plot1')
+        )),
+    # Plot 1
+    fluidPage(
+        verticalLayout(
+            titlePanel('Plot 2'),
+            plotOutput('plot2')
+        ))
     )
-    # Update the maximum value for the numericInput based on max_no_rows().
-    observeEvent(input$code,{
-        updateNumericInput(session,'rows',max=max_no_rows())
-    })
-    # Store the maximum possible number of stories.
-    max_no_stories<-reactive(length(selected()$narrative))
-    # Reactive used to save the current position in the narrative list.
-    story<-reactiveVal(1)
-    # Reset the story counter if the user changes the product code. 
-    observeEvent(input$code,{
-        story(1)
-    })
-    # When the user clicks "Next story", increase the current position in the
-    # narrative but never go beyond the interval [1, length of the narrative].
-    # Note that the mod function (%%) is keeping `current`` within this interval.
-    observeEvent(input$AfterStory,{
-        story((story()%%
-                   max_no_stories())+1)
-    })
-    # When the user clicks "Previous story" decrease the current position in the
-    # narrative. Note that we also take advantage of the mod function.
-    observeEvent(input$BeforeStory,{
-        story(((story()-2)%%
-                   max_no_stories())+1)
-    })
-    output$narrative<-renderText({
-        selected()$narrative[story()]
-    })
-    #>>
+########################################################
+###################### Server ##########################
+########################################################
+server<-function(input,output) {
+    #Site Selection for Plot 1
+    output$plot1<-renderPlot({ggplot()+
+            geom_line(data=BioDF.line%>%
+                          filter(site==input$select)%>%
+                          filter(Presence==1),
+                      aes(x=width_ft,
+                          y=elevation_ft))+
+            geom_point(data=BioDF.line%>%
+                           filter(site==input$select)%>%
+                           filter(Presence==1)%>%
+                           filter(Biology==input$select2),
+                       aes(x=width_ft,
+                           y=elevation_ft,
+                           color=Biology),
+                       alpha=0.8)+
+            labs(x=element_blank(),
+                 y='Beach Elevation (ft)')+
+            theme_classic()+
+            theme(axis.text=element_text(size=12),
+                  axis.title=element_text(size=14),
+                  legend.position=0)+
+            scale_x_continuous(limits=c(0,500))+
+            scale_y_continuous(limits=c(-5,30))+
+            scale_color_manual(values='dodgerblue1')})
+    #Site Selection for Plot 2
+    output$plot2<-renderPlot({ggplot()+
+            geom_line(data=BioDF.line%>%
+                          filter(site==input$select3)%>%
+                          filter(Presence==1),
+                      aes(x=width_ft,
+                          y=elevation_ft))+
+            geom_point(data=BioDF.line%>%
+                           filter(site==input$select3)%>%
+                           filter(Presence==1)%>%
+                           filter(Biology==input$select4),
+                       aes(x=width_ft,
+                           y=elevation_ft,
+                           color=Biology),
+                       alpha=0.8)+
+            labs(x=element_blank(),
+                 y='Beach Elevation (ft)')+
+            theme_classic()+
+            theme(axis.text=element_text(size=12),
+                  axis.title=element_text(size=14),
+                  legend.position=0)+
+            scale_x_continuous(limits=c(0,500))+
+            scale_y_continuous(limits=c(-5,30))+
+            scale_color_manual(values='dodgerblue1')})
 }
-#########################################################
-##################### END/Run App #######################
-#########################################################
-shinyApp(ui, server)
+########################################################
+##################### Run App ##########################
+########################################################
+# Run the application 
+shinyApp(ui = ui, server = server)
+########################################################
