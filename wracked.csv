@@ -1,0 +1,257 @@
+"","Site","wrackline","variable","value"
+"1","A","New","Green Algae",0
+"2","B","New","Green Algae",0.194
+"3","C","New","Green Algae",0.211
+"4","D","New","Green Algae",0.047
+"5","E","New","Green Algae",0.48
+"6","F","New","Green Algae",0.247
+"7","G","New","Green Algae",0.93
+"8","H","New","Green Algae",0.505
+"9","K","New","Green Algae",0.318
+"10","L","New","Green Algae",0.456
+"11","M","New","Green Algae",0.183
+"12","N","New","Green Algae",0.027
+"13","P","New","Green Algae",0.693
+"14","S","New","Green Algae",0.69
+"15","U","New","Green Algae",0.013
+"16","Z","New","Green Algae",0.895
+"17","A","Old","Green Algae",0
+"18","B","Old","Green Algae",0.065
+"19","C","Old","Green Algae",0.058
+"20","D","Old","Green Algae",0.01
+"21","E","Old","Green Algae",0.237
+"22","F","Old","Green Algae",0.045
+"23","G","Old","Green Algae",0
+"24","H","Old","Green Algae",0
+"25","K","Old","Green Algae",0
+"26","L","Old","Green Algae",0.013
+"27","M","Old","Green Algae",0.038
+"28","N","Old","Green Algae",0
+"29","P","Old","Green Algae",0.229
+"30","S","Old","Green Algae",0
+"31","U","Old","Green Algae",0
+"32","Z","Old","Green Algae",0
+"33","A","New","Brown Algae",0
+"34","B","New","Brown Algae",0
+"35","C","New","Brown Algae",0.011
+"36","D","New","Brown Algae",0
+"37","E","New","Brown Algae",0.014
+"38","F","New","Brown Algae",0.123
+"39","G","New","Brown Algae",0.002
+"40","H","New","Brown Algae",0.035
+"41","K","New","Brown Algae",0.021
+"42","L","New","Brown Algae",0.009
+"43","M","New","Brown Algae",0.018
+"44","N","New","Brown Algae",0.079
+"45","P","New","Brown Algae",0.001
+"46","S","New","Brown Algae",0.026
+"47","U","New","Brown Algae",0.007
+"48","Z","New","Brown Algae",0.003
+"49","A","Old","Brown Algae",0
+"50","B","Old","Brown Algae",0
+"51","C","Old","Brown Algae",0
+"52","D","Old","Brown Algae",0
+"53","E","Old","Brown Algae",0.029
+"54","F","Old","Brown Algae",0.055
+"55","G","Old","Brown Algae",0
+"56","H","Old","Brown Algae",0
+"57","K","Old","Brown Algae",0
+"58","L","Old","Brown Algae",0
+"59","M","Old","Brown Algae",0.012
+"60","N","Old","Brown Algae",0
+"61","P","Old","Brown Algae",0
+"62","S","Old","Brown Algae",0
+"63","U","Old","Brown Algae",0
+"64","Z","Old","Brown Algae",0
+"65","A","New","Red Algae",0
+"66","B","New","Red Algae",0.021
+"67","C","New","Red Algae",0.03
+"68","D","New","Red Algae",0.004
+"69","E","New","Red Algae",0.001
+"70","F","New","Red Algae",0.067
+"71","G","New","Red Algae",0.004
+"72","H","New","Red Algae",0.004
+"73","K","New","Red Algae",0.012
+"74","L","New","Red Algae",0.009
+"75","M","New","Red Algae",0.008
+"76","N","New","Red Algae",0
+"77","P","New","Red Algae",0.003
+"78","S","New","Red Algae",0.005
+"79","U","New","Red Algae",0
+"80","Z","New","Red Algae",0.008
+"81","A","Old","Red Algae",0
+"82","B","Old","Red Algae",0
+"83","C","Old","Red Algae",0
+"84","D","Old","Red Algae",0.002
+"85","E","Old","Red Algae",0
+"86","F","Old","Red Algae",0.022
+"87","G","Old","Red Algae",0
+"88","H","Old","Red Algae",0
+"89","K","Old","Red Algae",0
+"90","L","Old","Red Algae",0
+"91","M","Old","Red Algae",0
+"92","N","Old","Red Algae",0
+"93","P","Old","Red Algae",0
+"94","S","Old","Red Algae",0
+"95","U","Old","Red Algae",0
+"96","Z","Old","Red Algae",0
+"97","A","New","Dead Algae",0
+"98","B","New","Dead Algae",0
+"99","C","New","Dead Algae",0
+"100","D","New","Dead Algae",0
+"101","E","New","Dead Algae",0
+"102","F","New","Dead Algae",0
+"103","G","New","Dead Algae",0
+"104","H","New","Dead Algae",0
+"105","K","New","Dead Algae",0
+"106","L","New","Dead Algae",0
+"107","M","New","Dead Algae",0.012
+"108","N","New","Dead Algae",0.036
+"109","P","New","Dead Algae",0
+"110","S","New","Dead Algae",0
+"111","U","New","Dead Algae",0
+"112","Z","New","Dead Algae",0
+"113","A","Old","Dead Algae",0
+"114","B","Old","Dead Algae",0.146
+"115","C","Old","Dead Algae",0.015
+"116","D","Old","Dead Algae",0.082
+"117","E","Old","Dead Algae",0
+"118","F","Old","Dead Algae",0.065
+"119","G","Old","Dead Algae",0.134
+"120","H","Old","Dead Algae",0.075
+"121","K","Old","Dead Algae",0.283
+"122","L","Old","Dead Algae",0.185
+"123","M","Old","Dead Algae",0.03
+"124","N","Old","Dead Algae",0.023
+"125","P","Old","Dead Algae",0.076
+"126","S","Old","Dead Algae",0.122
+"127","U","Old","Dead Algae",0.002
+"128","Z","Old","Dead Algae",0.013
+"129","A","New","Eelgrass",0.269
+"130","B","New","Eelgrass",0.004
+"131","C","New","Eelgrass",0.009
+"132","D","New","Eelgrass",0
+"133","E","New","Eelgrass",0.011
+"134","F","New","Eelgrass",0.017
+"135","G","New","Eelgrass",0.001
+"136","H","New","Eelgrass",0
+"137","K","New","Eelgrass",0.024
+"138","L","New","Eelgrass",0.001
+"139","M","New","Eelgrass",0.01
+"140","N","New","Eelgrass",0.004
+"141","P","New","Eelgrass",0.04
+"142","S","New","Eelgrass",0.011
+"143","U","New","Eelgrass",0.266
+"144","Z","New","Eelgrass",0.014
+"145","A","Old","Eelgrass",0.04
+"146","B","Old","Eelgrass",0.011
+"147","C","Old","Eelgrass",0.009
+"148","D","Old","Eelgrass",0
+"149","E","Old","Eelgrass",0.047
+"150","F","Old","Eelgrass",0.038
+"151","G","Old","Eelgrass",0.007
+"152","H","Old","Eelgrass",0
+"153","K","Old","Eelgrass",0.054
+"154","L","Old","Eelgrass",0.017
+"155","M","Old","Eelgrass",0.031
+"156","N","Old","Eelgrass",0.01
+"157","P","Old","Eelgrass",0.032
+"158","S","Old","Eelgrass",0.002
+"159","U","Old","Eelgrass",0.028
+"160","Z","Old","Eelgrass",0.055
+"161","A","New","Terrestrial Plants",0.086
+"162","B","New","Terrestrial Plants",0.017
+"163","C","New","Terrestrial Plants",0.005
+"164","D","New","Terrestrial Plants",0.004
+"165","E","New","Terrestrial Plants",0.133
+"166","F","New","Terrestrial Plants",0.079
+"167","G","New","Terrestrial Plants",0.016
+"168","H","New","Terrestrial Plants",0
+"169","K","New","Terrestrial Plants",0.014
+"170","L","New","Terrestrial Plants",0
+"171","M","New","Terrestrial Plants",0.059
+"172","N","New","Terrestrial Plants",0.046
+"173","P","New","Terrestrial Plants",0.014
+"174","S","New","Terrestrial Plants",0.003
+"175","U","New","Terrestrial Plants",0.015
+"176","Z","New","Terrestrial Plants",0.017
+"177","A","Old","Terrestrial Plants",0.478
+"178","B","Old","Terrestrial Plants",0.036
+"179","C","Old","Terrestrial Plants",0.021
+"180","D","Old","Terrestrial Plants",0.068
+"181","E","Old","Terrestrial Plants",0.328
+"182","F","Old","Terrestrial Plants",0.212
+"183","G","Old","Terrestrial Plants",0.087
+"184","H","Old","Terrestrial Plants",0.044
+"185","K","Old","Terrestrial Plants",0.083
+"186","L","Old","Terrestrial Plants",0.2
+"187","M","Old","Terrestrial Plants",0.07
+"188","N","Old","Terrestrial Plants",0.055
+"189","P","Old","Terrestrial Plants",0.388
+"190","S","Old","Terrestrial Plants",0.05
+"191","U","Old","Terrestrial Plants",0.025
+"192","Z","Old","Terrestrial Plants",0.126
+"193","A","New","Trash",0
+"194","B","New","Trash",0
+"195","C","New","Trash",0
+"196","D","New","Trash",0
+"197","E","New","Trash",0
+"198","F","New","Trash",0.005
+"199","G","New","Trash",0
+"200","H","New","Trash",0
+"201","K","New","Trash",0.001
+"202","L","New","Trash",0
+"203","M","New","Trash",0
+"204","N","New","Trash",0
+"205","P","New","Trash",0
+"206","S","New","Trash",0
+"207","U","New","Trash",0.004
+"208","Z","New","Trash",0
+"209","A","Old","Trash",0.004
+"210","B","Old","Trash",0
+"211","C","Old","Trash",0.016
+"212","D","Old","Trash",0
+"213","E","Old","Trash",0.004
+"214","F","Old","Trash",0.004
+"215","G","Old","Trash",0.017
+"216","H","Old","Trash",0.002
+"217","K","Old","Trash",0.007
+"218","L","Old","Trash",0.068
+"219","M","Old","Trash",0.001
+"220","N","Old","Trash",0
+"221","P","Old","Trash",0.003
+"222","S","Old","Trash",0.001
+"223","U","Old","Trash",0
+"224","Z","Old","Trash",0
+"225","A","New","Absent",0.645
+"226","B","New","Absent",0.764
+"227","C","New","Absent",0.734
+"228","D","New","Absent",0.945
+"229","E","New","Absent",0.361
+"230","F","New","Absent",0.462
+"231","G","New","Absent",0.0469999999999999
+"232","H","New","Absent",0.456
+"233","K","New","Absent",0.61
+"234","L","New","Absent",0.525
+"235","M","New","Absent",0.71
+"236","N","New","Absent",0.808
+"237","P","New","Absent",0.249
+"238","S","New","Absent",0.265
+"239","U","New","Absent",0.695
+"240","Z","New","Absent",0.0629999999999999
+"241","A","Old","Absent",0.478
+"242","B","Old","Absent",0.742
+"243","C","Old","Absent",0.881
+"244","D","Old","Absent",0.838
+"245","E","Old","Absent",0.355
+"246","F","Old","Absent",0.559
+"247","G","Old","Absent",0.755
+"248","H","Old","Absent",0.879
+"249","K","Old","Absent",0.573
+"250","L","Old","Absent",0.517
+"251","M","Old","Absent",0.818
+"252","N","Old","Absent",0.912
+"253","P","Old","Absent",0.272
+"254","S","Old","Absent",0.825
+"255","U","Old","Absent",0.945
+"256","Z","Old","Absent",0.806
